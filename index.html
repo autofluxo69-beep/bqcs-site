@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BQCS – Comércio & Serviços | Roupa e Calçado em Luanda</title>
+  <meta name="description" content="BQCS Comércio & Serviços — roupa e calçado em Luanda. Catálogo online e encomendas via WhatsApp.">
+
+  <!-- Tipografia (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+</head>
+<body>
+
+  <!-- ===================== CABEÇALHO ===================== -->
+  <header class="cabecalho">
+    <div class="cabecalho__barra wrap">
+      <div class="marca">
+        <img src="logo.jpg" alt="Logótipo BQCS" class="marca__logo">
+        <div class="marca__texto">
+          <h1>BQCS</h1>
+          <span>Comércio &amp; Serviços LDA</span>
+        </div>
+      </div>
+
+      <nav class="nav-principal" id="nav-principal">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#onde-estamos">Onde estamos</a>
+        <a href="#encomendar">Encomendar</a>
+      </nav>
+
+      <div style="display:flex; align-items:center; gap:12px;">
+        <a class="botao-contacto" href="#onde-estamos">
+          <!-- ícone de localização -->
+          <svg class="icone" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Onde estamos</span>
+        </a>
+        <button class="menu-hamburguer" id="menu-hamburguer" aria-label="Abrir menu">
+          <svg class="icone" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== CATÁLOGO ===================== -->
+    <section id="catalogo">
+      <div class="wrap">
+        <div class="cabecalho-seccao">
+          <span class="rotulo">CATÁLOGO</span>
+          <h2>Peças seleccionadas com cuidado</h2>
+          <p>Escolha os artigos que deseja e adicione-os à sua encomenda. Respondemos por WhatsApp em minutos.</p>
+          <div class="linha-dourada"></div>
+        </div>
+
+        <div class="filtros" id="filtros"></div>
+
+        <div class="grelha-produtos" id="grelha-produtos">
+          <!-- Produtos inseridos dinamicamente pelo script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ONDE ESTAMOS ===================== -->
+    <section id="onde-estamos" class="localizacao">
+      <div class="wrap">
+        <div class="cabecalho-seccao">
+          <span class="rotulo">LOCALIZAÇÃO</span>
+          <h2>Onde estamos</h2>
+          <div class="linha-dourada"></div>
+        </div>
+
+        <div class="localizacao__grelha">
+          <div class="localizacao__detalhes">
+            <div class="detalhe-linha">
+              <svg class="icone" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Luanda, Angola — Boutique Kimbakala (ver mapa ao lado)</span>
+            </div>
+            <div class="detalhe-linha">
+              <svg class="icone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>Encomendas e atendimento via WhatsApp</span>
+            </div>
+            <div class="detalhe-linha">
+              <svg class="icone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Segunda a sábado, 9h às 18h</span>
+            </div>
+          </div>
+
+          <div class="mapa-caixa">
+            <!-- Iframe do Google Maps tornado responsivo (ver style.css .mapa-caixa) -->
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63078.07115027114!2d13.181410748632826!3d-8.844219399999991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a51f100535a05e5%3A0xd9640dc1cdf001!2sBoutique%20Kimbakala!5e0!3m2!1spt-PT!2sao!4v1789495252558!5m2!1spt-PT!2sao"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              title="Mapa de localização da BQCS">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FORMULÁRIO DE ENCOMENDA ===================== -->
+    <section id="encomendar">
+      <div class="wrap">
+        <div class="cabecalho-seccao">
+          <span class="rotulo">ENCOMENDA</span>
+          <h2>Finalize a sua encomenda</h2>
+          <p>Preencha os seus dados — a encomenda é enviada directamente para o nosso WhatsApp.</p>
+          <div class="linha-dourada"></div>
+        </div>
+
+        <form class="encomenda__grelha" id="formulario-encomenda">
+          <div>
+            <div class="campo">
+              <label for="campo-nome">Nome completo</label>
+              <input type="text" id="campo-nome" name="nome" placeholder="O seu nome" required>
+            </div>
+            <div class="campo">
+              <label for="campo-contacto">Contacto (telefone/WhatsApp)</label>
+              <input type="tel" id="campo-contacto" name="contacto" placeholder="9XX XXX XXX" required>
+            </div>
+            <div class="campo">
+              <label for="campo-local">Local de entrega</label>
+              <input type="text" id="campo-local" name="local" placeholder="Município, bairro, referência" required>
+            </div>
+            <div class="campo">
+              <label for="campo-nota">Observações (opcional)</label>
+              <textarea id="campo-nota" name="nota" placeholder="Tamanho, cor, número de calçado, horário preferido..."></textarea>
+            </div>
+          </div>
+
+          <div class="resumo-encomenda">
+            <h3>Resumo da encomenda</h3>
+            <ul class="lista-resumo" id="lista-resumo"></ul>
+            <div class="resumo-total">
+              <span>Total estimado</span>
+              <span id="resumo-total-valor">0 Kz</span>
+            </div>
+            <button type="submit" class="botao-primario" id="botao-enviar-encomenda" disabled style="width:100%; justify-content:center;">
+              <svg class="icone" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Enviar encomenda via WhatsApp
+            </button>
+            <p class="mensagem-estado" id="mensagem-estado"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Barra flutuante que mostra a seleção actual -->
+  <div class="barra-seleccao" id="barra-seleccao">
+    <div class="barra-seleccao__conteudo">
+      <span class="barra-seleccao__info" id="barra-seleccao-contagem"></span>
+      <button class="botao-primario" id="botao-ver-encomenda">Ver encomenda</button>
+    </div>
+  </div>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="rodape">
+    <div class="wrap rodape__conteudo">
+      <div class="rodape__marca">
+        <img src="logo.jpg" alt="Logótipo BQCS">
+        <span>BQCS — Comércio &amp; Serviços LDA</span>
+      </div>
+      <p class="rodape__legal">© <span id="ano-actual"></span> BQCS. Site de demonstração.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

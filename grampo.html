@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- robots: impede indexação desta página nos motores de busca -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Painel — BQCS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Estilos específicos do painel administrativo */
+    .painel-corpo {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .painel-cabecalho {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .painel-cabecalho h1 {
+      font-family: var(--fonte-titulo);
+      font-size: 1.8rem;
+      color: var(--dourado-claro);
+    }
+
+    .ligacao-site {
+      font-size: 0.85rem;
+      color: var(--creme-suave);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 8px 14px;
+      border-radius: var(--raio);
+    }
+
+    .ligacao-site:hover {
+      border-color: var(--dourado);
+      color: var(--dourado-claro);
+    }
+
+    .cartao-painel {
+      background: var(--preto-suave);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: var(--raio);
+      padding: 26px;
+      margin-bottom: 30px;
+    }
+
+    .cartao-painel h2 {
+      font-family: var(--fonte-titulo);
+      font-size: 1.4rem;
+      color: var(--creme);
+      margin-bottom: 18px;
+    }
+
+    .grelha-formulario {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 20px;
+    }
+
+    .grelha-formulario .campo-largo {
+      grid-column: 1 / -1;
+    }
+
+    .alternador-imagem {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .alternador-imagem button {
+      flex: 1;
+      background: transparent;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: var(--creme-suave);
+      padding: 8px;
+      border-radius: var(--raio);
+      font-size: 0.82rem;
+    }
+
+    .alternador-imagem button.activo {
+      background: var(--dourado);
+      color: var(--preto);
+      border-color: var(--dourado);
+      font-weight: 600;
+    }
+
+    .pre-visualizacao {
+      width: 90px;
+      height: 110px;
+      border-radius: var(--raio);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      object-fit: cover;
+      margin-top: 10px;
+      background: var(--carvao);
+    }
+
+    .linha-acoes {
+      display: flex;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .botao-secundario {
+      background: transparent;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: var(--creme-suave);
+      padding: 11px 20px;
+      border-radius: var(--raio);
+      font-size: 0.88rem;
+    }
+
+    .botao-secundario:hover {
+      border-color: var(--dourado);
+      color: var(--dourado-claro);
+    }
+
+    .tabela-produtos {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    .tabela-produtos th {
+      text-align: left;
+      color: var(--dourado);
+      font-weight: 500;
+      font-size: 0.76rem;
+      letter-spacing: 0.06em;
+      padding: 10px 8px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .tabela-produtos td {
+      padding: 10px 8px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+      color: var(--creme);
+      vertical-align: middle;
+    }
+
+    .tabela-produtos img {
+      width: 42px;
+      height: 52px;
+      object-fit: cover;
+      border-radius: 3px;
+    }
+
+    .tabela-produtos .acoes-linha {
+      display: flex;
+      gap: 8px;
+    }
+
+    .botao-icone {
+      background: transparent;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: var(--creme-suave);
+      padding: 7px;
+      border-radius: var(--raio);
+      line-height: 0;
+    }
+
+    .botao-icone:hover {
+      border-color: var(--dourado);
+      color: var(--dourado-claro);
+    }
+
+    .botao-icone.perigo:hover {
+      border-color: #d17b6a;
+      color: #d17b6a;
+    }
+
+    .tela-password {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .caixa-password {
+      background: var(--preto-suave);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: var(--raio);
+      padding: 34px;
+      width: 100%;
+      max-width: 340px;
+      text-align: center;
+    }
+
+    .caixa-password img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+    }
+
+    .caixa-password h1 {
+      font-family: var(--fonte-titulo);
+      font-size: 1.4rem;
+      color: var(--dourado-claro);
+      margin-bottom: 18px;
+    }
+
+    .erro-password {
+      color: #d17b6a;
+      font-size: 0.82rem;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .erro-password.visivel {
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .grelha-formulario {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== ECRÃ DE PASSWORD ===================== -->
+  <!-- Proteção simples apenas para demonstração — não é segurança real,
+       já que o código corre no browser do utilizador. -->
+  <div class="tela-password" id="tela-password">
+    <div class="caixa-password">
+      <img src="assets/logo.jpg" alt="Logótipo BQCS">
+      <h1>Painel BQCS</h1>
+      <div class="campo">
+        <input type="password" id="campo-password" placeholder="Palavra-passe">
+      </div>
+      <button class="botao-primario" id="botao-entrar" style="width:100%; justify-content:center; margin-top:6px;">Entrar</button>
+      <p class="erro-password" id="erro-password">Palavra-passe incorrecta.</p>
+    </div>
+  </div>
+
+  <!-- ===================== PAINEL (só visível após password correcta) ===================== -->
+  <div class="painel-corpo" id="painel-conteudo" style="display:none;">
+    <div class="painel-cabecalho">
+      <h1>Painel administrativo — BQCS</h1>
+      <a class="ligacao-site" href="index.html">← Voltar ao site</a>
+    </div>
+
+    <!-- Formulário para cadastrar / editar produto -->
+    <div class="cartao-painel">
+      <h2 id="titulo-formulario">Cadastrar novo produto</h2>
+      <form id="formulario-produto">
+        <input type="hidden" id="produto-id">
+
+        <div class="grelha-formulario">
+          <div class="campo">
+            <label for="produto-nome">Nome do produto</label>
+            <input type="text" id="produto-nome" placeholder="Ex: Vestido Midi Dourado" required>
+          </div>
+          <div class="campo">
+            <label for="produto-preco">Preço (Kz)</label>
+            <input type="number" id="produto-preco" min="0" step="1" placeholder="Ex: 27500" required>
+          </div>
+          <div class="campo">
+            <label for="produto-categoria">Categoria</label>
+            <input type="text" id="produto-categoria" list="lista-categorias" placeholder="Ex: Roupa Feminina" required>
+            <datalist id="lista-categorias"></datalist>
+          </div>
+          <div class="campo">
+            <label>Imagem do produto</label>
+            <div class="alternador-imagem">
+              <button type="button" id="modo-url" class="activo">Usar URL</button>
+              <button type="button" id="modo-upload">Carregar ficheiro</button>
+            </div>
+            <input type="text" id="produto-imagem-url" placeholder="https://...">
+            <input type="file" id="produto-imagem-ficheiro" accept="image/*" style="display:none;">
+            <img id="pre-visualizacao" class="pre-visualizacao" style="display:none;">
+          </div>
+          <div class="campo campo-largo">
+            <label for="produto-descricao">Descrição</label>
+            <textarea id="produto-descricao" placeholder="Breve descrição do produto (tecido, tamanhos, cores...)"></textarea>
+          </div>
+        </div>
+
+        <div class="linha-acoes">
+          <button type="submit" class="botao-primario" id="botao-guardar-produto">
+            <svg class="icone" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Guardar produto
+          </button>
+          <button type="button" class="botao-secundario" id="botao-cancelar-edicao" style="display:none;">Cancelar edição</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Listagem de produtos cadastrados -->
+    <div class="cartao-painel">
+      <h2>Produtos cadastrados (<span id="contagem-produtos">0</span>)</h2>
+      <div style="overflow-x:auto;">
+        <table class="tabela-produtos">
+          <thead>
+            <tr>
+              <th>Imagem</th>
+              <th>Nome</th>
+              <th>Categoria</th>
+              <th>Preço</th>
+              <th>Acções</th>
+            </tr>
+          </thead>
+          <tbody id="corpo-tabela-produtos"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
