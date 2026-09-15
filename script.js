@@ -22,78 +22,47 @@
   // número real da BQCS (formato Angola: 244 + 9 dígitos, ex: 244923456789).
   const NUMERO_WHATSAPP = "244937874164";
 
-  // Chave partilhada com o painel administrativo (grampo.html / admin.js)
-  const CHAVE_PRODUTOS = "bqcs_produtos";
-
   /* ------------------------------------------------------------------ */
-  /* PRODUTOS DE DEMONSTRAÇÃO (usados só se ainda não houver dados)     */
+  /* PRODUTOS DA LOJA                                                    */
+  /* Edita esta lista para adicionar, alterar ou remover produtos.       */
+  /* Cada produto é um bloco { ... } separado por vírgula. Ver instruções */
+  /* completas na conversa/README sobre como adicionar/editar/remover.  */
   /* ------------------------------------------------------------------ */
 
-  const PRODUTOS_DEMO = [
+  const PRODUTOS_LOJA = [
+    // Copia o bloco abaixo para cada novo produto e ajusta os valores.
+    // "id" tem de ser único (p1, p2, p3...). "categoria" pode ser o texto
+    // que quiseres (ex: "Roupa Feminina", "Calçado", "Acessórios") — os
+    // filtros do site são gerados automaticamente a partir das categorias
+    // que aqui existirem.
+    //
+    // {
+    //   id: "p1",
+    //   nome: "Nome do produto",
+    //   preco: 15000,
+    //   categoria: "Roupa Feminina",
+    //   imagem: "https://o-link-da-tua-imagem.jpg",
+    //   descricao: "Breve descrição do produto.",
+    // },
+
     {
-      id: "p1",
-      nome: "Conjunto Alfaiataria Bege",
-      preco: 32000,
-      categoria: "Roupa Feminina",
-      imagem: "https://placehold.co/500x625/14120d/d4af37?text=BQCS",
-      descricao: "Blazer e calça a condizer, tecido estruturado.",
-    },
-    {
-      id: "p2",
-      nome: "Camisa Social Branca",
-      preco: 18500,
+    id: "p1",
+    nome: "Camisa Social Masculina Manga Longa - Listrada (Vinho/Bordô)",
+      preco: 15000,
       categoria: "Roupa Masculina",
-      imagem: "https://placehold.co/500x625/14120d/d4af37?text=BQCS",
-      descricao: "Algodão premium, corte slim, ideal para o dia a dia.",
+      imagem: "im1.jpeg",
+      descricao: "Camisa social masculina de manga longa, com padrão listrado em tons de vinho e bordô. Ideal para ocasiões formais ou para o dia a dia no trabalho.",
     },
+
     {
-      id: "p3",
-      nome: "Vestido Midi Dourado",
-      preco: 27500,
-      categoria: "Roupa Feminina",
-      imagem: "https://placehold.co/500x625/14120d/d4af37?text=BQCS",
-      descricao: "Caimento fluido, ideal para eventos e festas.",
+    id: "p2",
+    nome: "Mocassins Slip-on Masculinos Loro Piana",
+      preco: 37000,
+      categoria: "Calçado Masculino",
+      imagem: "img2.jpeg",
+      descricao: "Mocassins slip-on masculinos da marca Loro Piana, confeccionados em couro de alta qualidade. Confortáveis e elegantes, perfeitos para ocasiões casuais ou formais.",
     },
-    {
-      id: "p4",
-      nome: "Ténis Urbano Preto",
-      preco: 24000,
-      categoria: "Calçado",
-      imagem: "https://placehold.co/500x625/14120d/d4af37?text=BQCS",
-      descricao: "Sola em borracha, conforto para o uso diário.",
-    },
-    {
-      id: "p5",
-      nome: "Sapato Clássico Couro",
-      preco: 38000,
-      categoria: "Calçado",
-      imagem: "https://placehold.co/500x625/14120d/d4af37?text=BQCS",
-      descricao: "Couro legítimo, acabamento fosco.",
-    },
-    {
-      id: "p6",
-      nome: "Casaco Trench Bege",
-      preco: 45000,
-      categoria: "Roupa Feminina",
-      imagem: "https://placehold.co/500x625/14120d/d4af37?text=BQCS",
-      descricao: "Corte clássico, impermeável leve.",
-    },
-    {
-      id: "p7",
-      nome: "Calça Jeans Slim",
-      preco: 15500,
-      categoria: "Roupa Masculina",
-      imagem: "https://placehold.co/500x625/14120d/d4af37?text=BQCS",
-      descricao: "Ganga resistente, elasticidade confortável.",
-    },
-    {
-      id: "p8",
-      nome: "Cinto Couro Dourado",
-      preco: 9500,
-      categoria: "Acessórios",
-      imagem: "https://placehold.co/500x625/14120d/d4af37?text=BQCS",
-      descricao: "Fivela metálica, acabamento premium.",
-    },
+    
   ];
 
   /* ------------------------------------------------------------------ */
@@ -106,22 +75,15 @@
   let seleccionados = new Set();
 
   /* ------------------------------------------------------------------ */
-  /* ARMAZENAMENTO (localStorage partilhado com o painel admin)         */
+  /* CARREGAMENTO DOS PRODUTOS                                           */
+  /* Agora os produtos vêm sempre da lista PRODUTOS_LOJA, escrita à mão  */
+  /* neste ficheiro. O localStorage/painel admin (/grampo.html) deixou   */
+  /* de ser a fonte de dados do site público — ver nota no fim do        */
+  /* ficheiro sobre o painel admin.                                      */
   /* ------------------------------------------------------------------ */
 
   function carregarProdutos() {
-    const dados = localStorage.getItem(CHAVE_PRODUTOS);
-    if (dados) {
-      try {
-        produtos = JSON.parse(dados);
-        return;
-      } catch (erro) {
-        console.error("Erro ao ler produtos do localStorage:", erro);
-      }
-    }
-    // Se ainda não existir nada guardado, semeia com os produtos de demo
-    produtos = PRODUTOS_DEMO;
-    localStorage.setItem(CHAVE_PRODUTOS, JSON.stringify(produtos));
+    produtos = PRODUTOS_LOJA;
   }
 
   /* ------------------------------------------------------------------ */
@@ -377,27 +339,6 @@
   }
 
   /* ------------------------------------------------------------------ */
-  /* SINCRONIZAÇÃO ENTRE SEPARADORES (ex: admin aberto noutra aba)       */
-  /* ------------------------------------------------------------------ */
-
-  function configurarSincronizacao() {
-    window.addEventListener("storage", (evento) => {
-      if (evento.key === CHAVE_PRODUTOS) {
-        carregarProdutos();
-        // Remove seleções de produtos que já não existem
-        const idsExistentes = new Set(produtos.map((p) => p.id));
-        seleccionados.forEach((id) => {
-          if (!idsExistentes.has(id)) seleccionados.delete(id);
-        });
-        desenharFiltros();
-        desenharCatalogo();
-        desenharBarraSeleccao();
-        desenharResumoEncomenda();
-      }
-    });
-  }
-
-  /* ------------------------------------------------------------------ */
   /* INICIALIZAÇÃO                                                       */
   /* ------------------------------------------------------------------ */
 
@@ -408,7 +349,6 @@
     desenharBarraSeleccao();
     desenharResumoEncomenda();
     configurarMenuMovel();
-    configurarSincronizacao();
 
     const formulario = document.getElementById("formulario-encomenda");
     if (formulario) {
